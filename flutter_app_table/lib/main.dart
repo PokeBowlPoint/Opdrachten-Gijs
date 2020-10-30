@@ -8,7 +8,20 @@ void main() {
   ));
 }
 
+class EmailFieldValidator {
+  static String validate(String value) {
+    return value.isEmpty ? 'Email can\'t be empty' : null;
+  }
+}
 
+class PasswordFieldValidator {
+  static String validate(String value) {
+    return value.isEmpty ? 'Password can\'t be empty' : null;
+  }
+}
+
+String _emailfield;
+String _passwordfield;
 
 class FirstRoute extends StatelessWidget {
   @override
@@ -41,6 +54,24 @@ class FirstRoute extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => ThirdRoute()),
                   );
                 },
+              ),
+            ),
+            Container(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Email'
+                ),
+                validator: EmailFieldValidator.validate,
+                onSaved: (value) => _emailfield = value,
+              ),
+            ),
+            Container(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Password'
+                ),
+                validator: PasswordFieldValidator.validate,
+                onSaved: (value) => _passwordfield = value,
               ),
             ),
           ],
